@@ -1,0 +1,85 @@
+<html>
+
+    <script type="module">
+        import {SafetySocket} from "./index.mjs";
+
+        // Simple ASYNC Wait Function
+        async function wait (time) {
+            return new Promise((s,j) => {
+                setTimeout(() => {
+                    s(true);
+                },time)
+            })
+        }
+
+
+        async function main() {
+
+            // Tell everyone that the program is running
+            console.log("I AM RUNNING!");
+
+            // Instantiate client 1, and connect it.
+            let client1 = new SafetySocket();
+            console.log("1> I AM LOADING!");
+            await client1.load();
+            let manager1 = client1.manager;
+            console.log("1> I AM CONNECTING");
+            await manager1.connect();
+            console.log(`1> MY NAME IS ${manager1.id.substring(0,10)}...`);
+            // SET UP WHAT TO DO WHEN WE GET A MESSAGE
+            manager1.on("communication", (evt) => {
+                let msg = evt.detail;
+                console.log(`1 > MY PEER SAYS: ${msg.communication}`);
+            });
+            // SET SHARED SECRET - CHEATING
+            manager1.manualSecret = "tacos";
+
+
+            // Instantiate client 2 and connect it.
+            let client2 = new SafetySocket();
+            console.log("2> I AM LOADING!");
+            await client2.load();
+            let manager2 = client2.manager;
+            console.log("2> I AM CONNECTING");
+            await manager2.connect();
+            console.log(`2> MY NAME IS ${manager2.id.substring(0,10)}...`);
+
+            // SET UP WHAT TO DO WHEN WE GET A MESSAGE
+            manager2.on("communication", (evt) => {
+                let msg = evt.detail;
+                console.log(`2 > MY PEER SAYS: ${msg.communication}`);
+            });
+            // SET SHARED SECRET - CHEATING
+            manager2.manualSecret = "tacos";
+            
+            // Have a conversation between 1 and 2.
+            manager1.send(manager2.id, "HELLO!");
+            await wait(300);
+            manager2.send(manager1.id, "HOLA!");
+            await wait(300);
+            manager1.send(manager2.id, "So...Do you like hot dogs?");
+            await wait(300);
+            manager2.send(manager1.id, "Ya...I DO!!!");
+            await wait(300);
+            manager1.send(manager2.id, "NEAT!");
+            await wait(300);
+            manager2.send(manager1.id, "Do you like them plain, or these new-fangled ones?");
+            await wait(300);
+            manager1.send(manager2.id, "There's a place here called Dog Haus...has one called the Thai-Fighter...TO DIE FOR!");
+            await wait(300);
+            manager2.send(manager1.id, "Give me a ballpark frank, spicy mustard, and a cold budweiser");
+            await wait(1300);
+            manager1.send(manager2.id, "...SO, do you like data?");
+            await wait(300);
+            manager2.send(manager1.id, "I love it.");
+        }
+
+
+        main();
+
+
+
+
+    </script>
+
+</html>
