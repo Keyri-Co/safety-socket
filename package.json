@@ -15,18 +15,18 @@
     },
     "repository": {
       "type": "git",
-      "url": "git+https://github.com/yourusername/safety-socket.git"
+      "url": "git+https://github.com/Keyri-Co/safety-socket.git"
     },
     "keywords": [
       "websocket",
       "security",
       "socket"
     ],
-    "author": "Your Name <your.email@example.com>",
+    "author": "Your Name <justin@keyri.com>",
     "license": "MIT",
     "bugs": {
-      "url": "https://github.com/yourusername/safety-socket/issues"
+      "url": "https://github.com/Keyri-Co/safety-socket/issues"
     },
-    "homepage": "https://github.com/yourusername/safety-socket#readme"
+    "homepage": "https://github.com/Keyri-Co/safety-socket#readme"
   }
   
