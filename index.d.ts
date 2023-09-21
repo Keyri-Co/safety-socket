@@ -84,7 +84,7 @@ declare module "safety-socket" {
        * @param clientApiKey - The client's API key.
        * @returns Resolves when the manager is loaded.
        */
-      async load(clientApiKey: string): Promise<void>;
+      load(clientApiKey: string): Promise<void>;
     }
   }
   
