@@ -11,7 +11,7 @@ declare module "safety-socket" {
   
       /**
        * Connects to the WebSocket server.
-       * @returns Resolves to true if connected successfully.
+       * @returns Resolves to true if connected successfully. 
        */
       connect(): Promise<boolean>;
   
